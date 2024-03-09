@@ -74,30 +74,56 @@ rangeBirth.addEventListener("input",(e:Event)=>{
 let stackOfWords=new Stack<string>();
 let allWords=new Stack<string>();
 const buttons=document.querySelectorAll(".grid-item")as NodeListOf<HTMLButtonElement> ;
+const deleteButton=document.getElementById("DeleteLastWord") as HTMLButtonElement;
 const field=document.getElementById("UserName") as HTMLInputElement ;
+field.value="";
 buttons.forEach(x=>x.addEventListener("click",clickButton));
 let index:number=0;
-function clickButton(e:Event){
 
+deleteButton.addEventListener("click",()=>{
+  allWords.pop();
+  stackOfWords.pop();
+  index=0;
+  let finalWord:string=allWords.items.join("");
+  field.value=finalWord;
+})
+
+
+function myCallback(){
+  
+  if(!stackOfWords.isEmpty()){
+    let word=stackOfWords.pop();
+     word="@";
+     stackOfWords.push(word);
+  }
+ 
+}
+function clickButton(e:Event){
+  setTimeout(myCallback,1500);
 let target=e.target as HTMLButtonElement;
 let word=target.innerText;
+
 let lastWordInStack=stackOfWords.peek();
+
 if(word==lastWordInStack){
 index++;
 if(word.length-1<index){
 return;
 }
+
 let lastWord:string=allWords.pop();
 allWords.push(word[index]);
 
 }else{
+
      stackOfWords.push(word);
      index=0;
      allWords.push(word[index]);
 }
 
-let finalWord:string=allWords.items.join("");
-field.value=finalWord;
+let finalWord=allWords.items;
+console.log(finalWord);
+field.value=finalWord.join("");
 
 }
 
