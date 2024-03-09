@@ -1,3 +1,18 @@
 .inLine{
     display: grid;width: fit-content;
 }
+
+.columns-auto-fill{
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+}
+.grid{
+    display: grid;
+    grid-gap: 5px;
+}
+
+.grid-item{
+    border-radius: 3px;
+  padding: 1rem;
+  background-color: #E0E0E0;
+  color: #212121;
+}
