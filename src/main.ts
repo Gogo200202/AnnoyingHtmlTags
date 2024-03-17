@@ -92,19 +92,17 @@ deleteButton.addEventListener("click",()=>{
 function myCallback(){
   
   if(!stackOfWords.isEmpty()){
-    let word=stackOfWords.pop();
-     word="@";
-     stackOfWords.push(word);
+    stackOfWords.pop();
+    
+     stackOfWords.push("@");
   }
  
 }
 function clickButton(e:Event){
-  setTimeout(myCallback,1500);
+  setTimeout(myCallback,2000);
 let target=e.target as HTMLButtonElement;
 let word=target.innerText;
-
 let lastWordInStack=stackOfWords.peek();
-
 if(word==lastWordInStack){
 index++;
 if(word.length-1<index){
@@ -122,9 +120,83 @@ allWords.push(word[index]);
 }
 
 let finalWord=allWords.items;
-console.log(finalWord);
+console.log(stackOfWords.items);
 field.value=finalWord.join("");
 
 }
+
+// password drawing 
+const canvas = document.getElementById("Canvas") as HTMLCanvasElement;
+class Positions{
+  public X:number;
+  public Y:number;
+  public W:number;
+  public H:number;
+
+
+
+  constructor(x: number, y: number, w: number, h: number){
+  this.X=x;
+  this.Y=y;
+  this.W=w;
+  this.H=h;
+  }
+}
+
+let x:number=1;
+let y:number=1;
+let w:number=10;
+let h:number=10;
+if (canvas.getContext) {
+  const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
+
+  const rectangle = new Path2D();
+  rectangle.rect(x, y, w, h);
+  ctx.reset();
+
+  ctx.stroke(rectangle);
+ 
+}
+let savedCoordinations:Positions[]=[]
+document.addEventListener('keydown', (event) => {
+
+
+       
+  if(event.code=="ArrowDown"){
+  y++;
+  }
+  if(event.code=="ArrowUp"){
+    y--;
+    }
+
+    if(event.code=="ArrowRight"){
+      x++;
+      }
+
+      if(event.code=="ArrowLeft"){
+        x--;
+        }
+  console.log(event.code)
+
+  if (canvas.getContext) {
+    const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
+  
+    const rectangle = new Path2D();
+    rectangle.rect(x, y, w, h);
+    ctx.reset();
+
+    ctx.fill(rectangle);
+   
+  }
+  
+
+});
+
+
+
+
+
+
+  
 
 
