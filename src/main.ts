@@ -215,7 +215,101 @@ return;
 
 });
 
+//the joystick
+let drag=false;
+let clientX:number=0;
+let clientY:number=0;
 
+let joystick=document.getElementById("joystick") as  HTMLDivElement; 
+document.addEventListener("mousedown", function (event:any) {
+
+
+  if(event.target.id=="joystick"){
+    
+    clientX=event.clientX;
+    clientY=event.clientY;
+    drag=true
+  }
+
+
+
+});
+
+document.addEventListener("mouseup", function (event:any) {
+
+
+  
+
+    drag=false;
+    
+  
+
+
+
+});
+document.addEventListener("mousemove", function (event:any) {
+
+
+  if(drag){
+    console.log("X: "+(clientX-event.clientX));
+    console.log("Y: "+(clientY-event.clientY));
+
+     
+    if((clientY-event.clientY)<0){
+      if(y>=90){
+    return;
+      }
+    y++;
+    }
+    if((clientY-event.clientY)>0){
+      if(y<=0){
+        return;
+      }
+      y--;
+      }
+  
+      if((clientX-event.clientX)<0){
+        if(x==190){
+  return;
+        }
+        x++;
+        }
+  
+        if((clientX-event.clientX)>0){
+         if(x==0){
+   return;
+         }
+          x--;
+          }
+          if(event.code=="Enter"){
+            let position=new Positions(x,y,w,h);
+            savedCoordinations.push(position);
+          }
+  
+
+  
+    if (canvas.getContext) {
+      const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
+    
+      const rectangle = new Path2D();
+      rectangle.rect(x, y, w, h);
+      ctx.reset();
+      for (let i = 0; i < savedCoordinations.length; i++) {
+        const rectangle = new Path2D();
+        
+      rectangle.rect(savedCoordinations[i].X, savedCoordinations[i].Y, savedCoordinations[i].W, savedCoordinations[i].H);
+      ctx.fill(rectangle);
+      }
+      ctx.fill(rectangle);
+     
+    }
+
+  }
+
+
+  
+
+});
 
 
 
