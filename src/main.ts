@@ -154,28 +154,46 @@ if (canvas.getContext) {
   rectangle.rect(x, y, w, h);
   ctx.reset();
 
-  ctx.stroke(rectangle);
+  ctx.fill(rectangle);
  
 }
 let savedCoordinations:Positions[]=[]
 document.addEventListener('keydown', (event) => {
 
 
+  
        
   if(event.code=="ArrowDown"){
+    if(y==90){
+  return;
+    }
   y++;
   }
   if(event.code=="ArrowUp"){
+    if(y==0){
+      return;
+    }
     y--;
     }
 
     if(event.code=="ArrowRight"){
+      if(x==190){
+return;
+      }
       x++;
       }
 
       if(event.code=="ArrowLeft"){
+       if(x==0){
+ return;
+       }
         x--;
         }
+        if(event.code=="Enter"){
+          let position=new Positions(x,y,w,h);
+          savedCoordinations.push(position);
+        }
+
   console.log(event.code)
 
   if (canvas.getContext) {
@@ -184,7 +202,12 @@ document.addEventListener('keydown', (event) => {
     const rectangle = new Path2D();
     rectangle.rect(x, y, w, h);
     ctx.reset();
-
+    for (let i = 0; i < savedCoordinations.length; i++) {
+      const rectangle = new Path2D();
+      
+    rectangle.rect(savedCoordinations[i].X, savedCoordinations[i].Y, savedCoordinations[i].W, savedCoordinations[i].H);
+    ctx.fill(rectangle);
+    }
     ctx.fill(rectangle);
    
   }
