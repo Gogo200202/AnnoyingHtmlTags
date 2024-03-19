@@ -220,7 +220,7 @@ let drag=false;
 let clientX:number=0;
 let clientY:number=0;
 
-let joystick=document.getElementById("joystick") as  HTMLDivElement; 
+let joystick=document.getElementById("joystick") as  HTMLImageElement; 
 document.addEventListener("mousedown", function (event:any) {
 
 
@@ -238,7 +238,7 @@ document.addEventListener("mousedown", function (event:any) {
 document.addEventListener("mouseup", function (event:any) {
 
 
-  
+  joystick.src="./svg/base.svg"
 
     drag=false;
     
@@ -251,17 +251,19 @@ document.addEventListener("mousemove", function (event:any) {
 
 
   if(drag){
-    console.log("X: "+(clientX-event.clientX));
-    console.log("Y: "+(clientY-event.clientY));
+
 
      
     if((clientY-event.clientY)<0){
+
       if(y>=90){
+        
     return;
       }
     y++;
     }
-    if((clientY-event.clientY)>0){
+     if((clientY-event.clientY)>0){
+
       if(y<=0){
         return;
       }
@@ -269,19 +271,23 @@ document.addEventListener("mousemove", function (event:any) {
       }
   
       if((clientX-event.clientX)<0){
+        joystick.src="./svg/right.svg"
+    
         if(x==190){
   return;
         }
         x++;
         }
   
-        if((clientX-event.clientX)>0){
+       else if((clientX-event.clientX)>0){
+        joystick.src="./svg/left.svg"
          if(x==0){
    return;
          }
           x--;
           }
-          if(event.code=="Enter"){
+
+           if(event.code=="Enter"){
             let position=new Positions(x,y,w,h);
             savedCoordinations.push(position);
           }
