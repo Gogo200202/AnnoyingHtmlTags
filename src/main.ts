@@ -336,23 +336,37 @@ document.addEventListener("mousedown", function (event:any) {
 
 });
 
-let testBoal=document.createElement("div");
-testBoal.style.background="#f00";
-testBoal.style.width="200px";
-testBoal.style.height="200px";
-testBoal.style.borderRadius="50%";
+let testBoal=document.createElement("img");
+
+testBoal.style.width="100px";
+testBoal.style.height="100px";
+testBoal.src="svg/hammer.svg";
 testBoal.style.position="absolute"
 
 
 let hammervolue=document.getElementById("hammerVolume") as HTMLElement;
 hammervolue.appendChild(testBoal);
-
+//make hammer physicks 
+let cx:string;
+let cy:string;
 document.addEventListener("mousemove", function (event:MouseEvent) {
-
+//document.body.style.cursor="none"
 console.log(event.clientY+'y')
 console.log(event.clientX+'x')
-testBoal.style.top= (event.clientY).toString()+"px";
-testBoal.style.left= (event.clientX+10).toString()+"px";
+
+cx= (event.clientY-80).toString()+"px";
+cy= (event.clientX).toString()+"px";
+
  
 
 });
+
+//animation loop
+//implement momentum
+window.setInterval(() => {
+
+
+  testBoal.style.top=cx
+  testBoal.style.left= cy;
+
+}, 1000 / 60);
