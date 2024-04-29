@@ -318,8 +318,41 @@ document.addEventListener("mousemove", function (event:any) {
 });
 
 
+// volume hummer game
+// hit to go up
+let hammerSVG=document.getElementById("hammer") as HTMLImageElement;
+const hammerSVGPath="svg/hammer.svg"
+let ifHammerClicked:boolean=false;
+document.addEventListener("mousedown", function (event:any) {
 
 
-  
+  if(event.target.id=="hammer"){
+    
+    hammerSVG.src="https://upload.wikimedia.org/wikipedia/commons/7/70/Solid_white.svg"
+    ifHammerClicked=true;
+  }
+
+ 
+
+});
+
+let testBoal=document.createElement("div");
+testBoal.style.background="#f00";
+testBoal.style.width="200px";
+testBoal.style.height="200px";
+testBoal.style.borderRadius="50%";
+testBoal.style.position="absolute"
 
 
+let hammervolue=document.getElementById("hammerVolume") as HTMLElement;
+hammervolue.appendChild(testBoal);
+
+document.addEventListener("mousemove", function (event:MouseEvent) {
+
+console.log(event.clientY+'y')
+console.log(event.clientX+'x')
+testBoal.style.top= (event.clientY).toString()+"px";
+testBoal.style.left= (event.clientX+10).toString()+"px";
+ 
+
+});

@@ -16,3 +16,7 @@
   background-color: #E0E0E0;
   color: #212121;
 }
+html, body {
+    margin: 0;
+    height: 100%;
+}

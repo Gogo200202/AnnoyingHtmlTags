@@ -46,24 +46,40 @@
 
       <div>Password drawing</div>
       <canvas id="Canvas" width="200" height="100" style="border:1px solid grey;"></canvas>
-    <br/>
 
-      <img 
-      style="position: absolute; left: 100px; -moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" 
-      unselectable="on"
-      onselectstart="return false;" 
-      onmousedown="return false;" id="joystick" 
-      id="joystick"
-       src="svg/base.svg" 
-       alt="joystick" 
-       width="100" 
-       height="100"> 
-
-     
-      
-      
+  
+    <img 
+    unselectable="on"
+    onselectstart="return false;" 
+    onmousedown="return false;" id="joystick" 
+    id="joystick"
+     src="svg/base.svg" 
+     alt="joystick" 
+     width="100" 
+     height="100"> 
+  
 
 
-    <script type="module" src="/src/main.ts"></script>
+       
+
+       <div id="hammerVolume">
+
+         <img 
+          unselectable="on"
+          onselectstart="return false;" 
+          onmousedown="return false;"  
+          id="hammer"
+           src="svg/hammer.svg" 
+           
+           width="50" 
+           height="50 "> 
+
+        
+
+       </div> 
+    
+
+
+    <script defer type="module" src="/src/main.ts"></script>
   </body>
 </html>
