@@ -341,7 +341,14 @@ let testBoal=document.createElement("img");
 testBoal.style.width="100px";
 testBoal.style.height="100px";
 testBoal.src="svg/hammer.svg";
+testBoal.style.transformOrigin="bottom left"
+//testBoal.style.backgroundColor="#bbb"
+//testBoal.style.borderRadius="50%"
 testBoal.style.position="absolute"
+
+testBoal.style.top="0"
+testBoal.style.right="0"
+
 
 
 let hammervolue=document.getElementById("hammerVolume") as HTMLElement;
@@ -351,11 +358,11 @@ let cx:string;
 let cy:string;
 document.addEventListener("mousemove", function (event:MouseEvent) {
 //document.body.style.cursor="none"
-console.log(event.clientY+'y')
-console.log(event.clientX+'x')
+//console.log(event.clientY+'y')
+//console.log(event.clientX+'x')
 
-cx= (event.clientY-80).toString()+"px";
-cy= (event.clientX).toString()+"px";
+cx= (event.clientY-90).toString()+"px";
+cy= (event.clientX+5).toString()+"px";
 
  
 
@@ -363,10 +370,40 @@ cy= (event.clientX).toString()+"px";
 
 //animation loop
 //implement momentum
+
+//float dt = (time between last frame and this frame measured in seconds);
+//acceleration = 9.8f; 
+//velocity += acceleration * dt;
+//position += velocity * dt;
+
+//gravity imp
+const dt = 1.0 / 60;
+const acceleration:number = 9.8;
+let resultoForVelocity:number= (acceleration * dt);
+let resultForPosition:number=(resultoForVelocity * dt);
+// rotate hammer
+let rotation:number=0;
+
 window.setInterval(() => {
+ // debugger
 
 
-  testBoal.style.top=cx
+
+
+ 
+let velocity:number=resultoForVelocity;
+resultoForVelocity +=velocity;
+let position:number = resultForPosition;
+resultForPosition+=position;
+
+  //testBoal.style.top=((resultForPosition/240).toString())+"px";
+  testBoal.style.top= cx;
   testBoal.style.left= cy;
 
+ //rotation
+ rotation++;
+ testBoal.style.rotate=`${rotation}deg`;
+
+
 }, 1000 / 60);
+
